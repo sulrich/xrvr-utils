@@ -1,13 +1,10 @@
 #!usr/bin/env python
 
 import csv
-import os
+import getpass
 import sys
 import getopt
 import re
-
-user = os.getlogin()
-
 
 def main(argv):
     if not argv:
@@ -35,6 +32,8 @@ def print_usage():
 def generate_bridges(mapfile):
     # TODO make this more generic to support multiple taps as opposed to my
     # simple 2 tap application
+
+    user = getpass.getuser()
     with open(mapfile, 'rb') as csvfile:
         intflist = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in intflist:
